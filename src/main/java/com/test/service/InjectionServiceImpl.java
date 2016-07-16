@@ -1,13 +1,24 @@
 package com.test.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.test.dao.InjectionDAO;
 
+@Service
 public class InjectionServiceImpl implements InjectionService {
 
+	//@Autowired: 给属性添加注解
 	InjectionDAO injectionDAO;
-	
-	//实现设值注入
+
+	//@Autowired//给setter方法添加注解
 	public void setInjectionDAO(InjectionDAO injectionDAO) {
+		this.injectionDAO = injectionDAO;
+	}
+	
+	@Autowired//使用构造器添加注解注入
+	public InjectionServiceImpl(InjectionDAO injectionDAO)
+	{
 		this.injectionDAO = injectionDAO;
 	}
 

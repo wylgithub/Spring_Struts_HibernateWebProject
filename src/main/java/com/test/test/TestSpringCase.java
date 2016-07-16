@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.test.annotation.TestBeanAnnotation;
+import com.test.multibean.BeanInvoker;
 import com.test.service.InjectionService;
 
 public class TestSpringCase {
@@ -67,5 +68,28 @@ public class TestSpringCase {
 		TestBeanAnnotation ta2 = (TestBeanAnnotation)ac.getBean("bean");
 		
 		ta2.myHashCode();
+	}
+	
+	@Test
+	public void testAutowired()
+	{
+		//加载配置文件
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		//获得实例
+		InjectionService is = (InjectionService)ac.getBean("injectionServiceImpl");
+		
+		//调用保存方法保存数据
+		is.save("@Autowired");
+	}
+	
+	@Test
+	public void testBeanInvoke()
+	{
+		//加载配置文件
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		//获得实例
+		BeanInvoker bi = (BeanInvoker)ac.getBean("beanInvoker");
+		
+		bi.say();
 	}
 }

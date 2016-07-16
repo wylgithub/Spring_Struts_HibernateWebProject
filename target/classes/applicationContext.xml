@@ -18,33 +18,6 @@
     http://www.springframework.org/schema/util    
     http://www.springframework.org/schema/util/spring-util.xsd">
         
-        <!-- 添加Spring类注解标签 -->
-        <context:annotation-config></context:annotation-config>
-        
-        <!-- 为了让Spring能够检测并注册相应的Bean需要添加如下的内容 -->
-        <context:component-scan base-package="org.example.hello(添加包，也可以使用正则表达式)">
-        	<!-- 使用过滤器，过滤掉一些不需要注册Bean的类 -->
-        	<context:exclude-filter type="regex" expression=""/> <!-- 使用正则表达式除去不需要的类 -->
-        	
-        	<!--<context:include-filter type="regex" expression=""/> -->
-        </context:component-scan>
-        
-        <!-- 添加beanName的自定义 -->
-        <context:component-scan base-package="com.test.implBeanNameGenerator" name-generator="com.test.implBeanNameGenerator.GeneratorBeanName">
-        	
-        </context:component-scan>
-        
-        <!-- 使用interfaces代理 -->
-        <context:component-scan base-package="org.demo" scoped-proxy="interfaces"></context:component-scan>
-        <!-- 不使用代理:no -->
-        <context:component-scan base-package="org.demo" scoped-proxy="no"></context:component-scan>
-        <!-- 使用targetClass方式代理 -->
-        <context:component-scan base-package="org.demo" scoped-proxy="targetClass"></context:component-scan>
-        
-        
-        <bean id="injectionService" class="com.test.service.InjectionServiceImpl">
-        	<property name="injectionDAO" ref="injectionDAO"></property>
-        </bean>
-        
-        <bean id="injectionDAO" class="com.test.dao.InjectionDAOImpl"></bean>
+        <!-- 配置注解自动扫描 Bean-->
+       	<context:component-scan base-package="com.test"></context:component-scan>
     </beans>   
