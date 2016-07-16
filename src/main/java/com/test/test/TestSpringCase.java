@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.test.annotation.TestBeanAnnotation;
 import com.test.service.InjectionService;
 
 public class TestSpringCase {
@@ -47,5 +48,24 @@ public class TestSpringCase {
 		
 		//调用保存方法保存数据
 		is.save("我是需要保存的data");
+	}
+	
+	@Test
+	public void testSay()
+	{
+		//加载配置文件
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext_BeanAnnotation.xml");
+		//获得实例
+		TestBeanAnnotation ta = (TestBeanAnnotation)ac.getBean("bean");
+		
+		ta.myHashCode();
+		
+		
+		//加载配置文件
+		ApplicationContext ac2 = new ClassPathXmlApplicationContext("applicationContext_BeanAnnotation.xml");
+		//获得实例
+		TestBeanAnnotation ta2 = (TestBeanAnnotation)ac.getBean("bean");
+		
+		ta2.myHashCode();
 	}
 }
